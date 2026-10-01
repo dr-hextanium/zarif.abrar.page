@@ -1,0 +1,23 @@
+{
+  "live_branch": "main",
+  "merge_gate": [
+    "bun run check",
+    "bun run build"
+  ],
+  "headless_allow": [
+    "Read",
+    "Glob",
+    "Grep",
+    "Edit",
+    "Write",
+    "Bash(git add:*)",
+    "Bash(git commit:*)",
+    "Bash(git status:*)",
+    "Bash(git diff:*)",
+    "Bash(git log:*)",
+    "Bash(bun run check)",
+    "Bash(bun run build)"
+  ],
+  "cache_ttl_minutes": 60,
+  "cold_warn_tokens": 40000
+}
