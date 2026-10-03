@@ -1,0 +1,116 @@
+// Zed tasks for zarif.abrar.page. Run with `task: spawn` (alt-shift-t).
+// Docs: https://zed.dev/docs/tasks
+[
+  // site
+
+  {
+    "label": "dev: astro dev server",
+    "command": "bun run dev",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "tags": ["site"]
+  },
+  {
+    "label": "check: astro check",
+    "command": "bun run check",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "tags": ["site"]
+  },
+  {
+    "label": "build: astro build",
+    "command": "bun run build",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "tags": ["site"]
+  },
+  {
+    "label": "preview: build, then serve dist",
+    "command": "bun run build && bun run preview",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "tags": ["site"]
+  },
+  {
+    // same commands the merge gate and CI run before shipping to main
+    "label": "gate: check and build",
+    "command": "bun run check && bun run build",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "tags": ["site"]
+  },
+  {
+    "label": "clean: remove dist and .astro",
+    "command": "rm -rf dist .astro",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "no_focus",
+    "hide": "on_success"
+  },
+
+  // deps
+
+  {
+    "label": "deps: bun install",
+    "command": "bun install",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "deps: bun outdated",
+    "command": "bun outdated",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+
+  // typst (margins). CI pins 0.15.1, keep local the same.
+
+  {
+    "label": "typst: version vs CI pin",
+    "command": "typst --version && grep -n typst-version .github/workflows/deploy.yml",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    // writes to $TMPDIR so nothing lands next to the source file
+    "label": "typst: compile current file to html",
+    "command": "typst compile --features html --format html \"$ZED_FILE\" \"${TMPDIR:-/tmp}/$ZED_STEM.html\" && echo \"${TMPDIR:-/tmp}/$ZED_STEM.html\"",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "typst: watch current file as html",
+    "command": "typst watch --features html --format html \"$ZED_FILE\" \"${TMPDIR:-/tmp}/$ZED_STEM.html\"",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+
+  // privacy: GPS and PDF metadata never reach the repo. Needs `brew install exiftool`.
+
+  {
+    // prints nothing when clean
+    "label": "privacy: find GPS tags in public, src, dist",
+    "command": "exiftool -q -r -if '$gpslatitude or $gpslongitude or $gpsposition' -filename -gps:all public src dist",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "privacy: strip GPS from current file",
+    "command": "exiftool -gps:all= -overwrite_original \"$ZED_FILE\" && exiftool -gps:all \"$ZED_FILE\"",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    // for the resume PDF; exiftool edits to PDFs are reversible, so qpdf rewrites the file to drop the old data
+    "label": "privacy: strip metadata from current pdf",
+    "command": "exiftool -all:all= -overwrite_original \"$ZED_FILE\" && qpdf --linearize --replace-input \"$ZED_FILE\" && exiftool \"$ZED_FILE\"",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  }
+]
