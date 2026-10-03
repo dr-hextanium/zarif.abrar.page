@@ -13,6 +13,29 @@
     "tags": ["site"]
   },
   {
+    // fixed port 5321 behind https://zarif.abrar.page.localhost (portless.json)
+    "label": "dev: portless dev server",
+    "command": "portless",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "tags": ["site"]
+  },
+  {
+    "label": "portless: list routes",
+    "command": "portless list",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    // read-only: proxy, routes, DNS, CA trust
+    "label": "portless: doctor",
+    "command": "portless doctor",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
     "label": "check: astro check",
     "command": "bun run check",
     "cwd": "$ZED_WORKTREE_ROOT",
