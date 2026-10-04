@@ -13,7 +13,7 @@
     "tags": ["site"]
   },
   {
-    // fixed port 5321 behind https://zarif.abrar.page.localhost (portless.json)
+    // fixed port 5321 behind https://portfolio.localhost (portless.json)
     "label": "dev: portless dev server",
     "command": "portless",
     "cwd": "$ZED_WORKTREE_ROOT",
