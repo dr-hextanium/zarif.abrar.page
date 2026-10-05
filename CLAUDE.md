@@ -67,6 +67,7 @@ Foreman tiers apply; project paths and checks in `.foreman/tiers.md`.
 - Work on `dev`. Ship to `main` only when a change is done and checked; a push to `main` deploys.
 - Follow Conventional Commits: `type(scope): description`, lowercase, imperative, 72 characters or fewer.
 - Atomic commits: one logical change each, and every commit passes the checks.
+- Keep every commit tiny and semantic: the smallest change that stands alone, a short subject that says exactly what changed, no body unless the why is not obvious. Split by concern, not by file.
 - Agents commit only their own doc changes. Pushing to `main` needs the owner.
 
 ## Handoff
