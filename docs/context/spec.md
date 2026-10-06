@@ -58,7 +58,7 @@ Owner's spec as given 2026-10-12. Implementation decisions live in overview.md (
 - ~20 at launch, ~1 every two weeks, webp/avif compressed
 
 ## aesthetic
-- light only, slightly warm paper background
+- light only, slightly warm paper background (#F5F1E8)
 - accent: sbu red #990000 (links, statuses, hover, figment dots)
 - petrona for everything
 - lowercase wherever reasonable, proper nouns and paper titles capitalized
