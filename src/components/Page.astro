@@ -1,0 +1,39 @@
+---
+import "@fontsource/petrona/300.css";
+import "@fontsource/petrona/400.css";
+import "@fontsource/petrona/500.css";
+import "@fontsource/petrona/700.css";
+import "@fontsource/petrona/400-italic.css";
+import "@fontsource/petrona/500-italic.css";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "");
+const links = ["work", "margins", "figments", "photos"];
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title ? `${title}, zarif abrar` : "zarif abrar"}</title>
+	</head>
+	<body>
+		<div class="wrap">
+			<nav class="site" aria-label="site">
+				<a href="/" class="home">zarif abrar</a>
+				{links.map((l) => <a href={`/${l}`} aria-current={path === `/${l}` ? "page" : undefined}>{l}</a>)}
+			</nav>
+			<main><slot /></main>
+			<footer>
+				<a href="mailto:zarif@abrar.page">zarif@abrar.page</a>
+				<span>no cookies</span>
+			</footer>
+		</div>
+	</body>
+</html>
