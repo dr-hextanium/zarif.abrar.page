@@ -1,0 +1,39 @@
+---
+import Page from "../components/Page.astro";
+import { work } from "../data/work";
+
+const filters = ["all", "software", "hardware", "robotics", "research"];
+---
+
+<Page title="work">
+  <h2>work</h2>
+  <p class="lede">ordered by impact. dates on roles only.</p>
+  <div class="chips" role="group" aria-label="filter work">
+    {filters.map((f) => <button class="chip" aria-pressed={f === "all"} data-filter={f}>{f}</button>)}
+  </div>
+  <div>
+    {work.map((w) => (
+      <div class="entry" data-tags={w.tags.join(" ")}>
+        <h3>{w.href ? <a href={w.href}>{w.title}</a> : w.title}</h3>
+        <span class:list={["meta", { wip: w.wip }]}>{w.meta}</span>
+        <p>{w.summary}</p>
+        <span class="tags">{w.tags.join(", ")}</span>
+      </div>
+    ))}
+  </div>
+</Page>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>(".chip");
+  const entries = document.querySelectorAll<HTMLElement>(".entry");
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const filter = chip.dataset.filter;
+      chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+      entries.forEach((e) => {
+        e.hidden = filter !== "all" && !e.dataset.tags?.split(" ").includes(filter!);
+      });
+    });
+  });
+</script>
