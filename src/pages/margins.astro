@@ -1,0 +1,25 @@
+---
+import Page from "../components/Page.astro";
+import { margins } from "../data/margins";
+---
+
+<Page title="margins">
+  <h2>margins</h2>
+  <p class="lede">notes in the margins. one typst file each.</p>
+  <div class="stream">
+    {margins.map((m) => (
+      <article>
+        <time datetime={m.date}>{m.date}</time>
+        <div>
+          <h3><a href="/margins">{m.title}</a></h3>
+          <p>{m.preview}</p>
+          <div class="acts">
+            <a href="/margins">margins/{m.slug}</a>
+            <a href={`mailto:zarif@abrar.page?subject=${encodeURIComponent(`re: ${m.title}`)}`}>reply by email</a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+  <p class="feed">atom feed at margins/feed.xml</p>
+</Page>
