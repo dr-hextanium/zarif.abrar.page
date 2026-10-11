@@ -1,0 +1,50 @@
+---
+import Page from "../components/Page.astro";
+import { figments } from "../data/figments";
+
+const mail = (text: string) => `mailto:zarif@abrar.page?subject=${encodeURIComponent(text)}`;
+---
+
+<Page title="figments">
+  <h2>figments</h2>
+  <p class="lede">one-line ideas, scattered. hover one to offer to build it together.</p>
+  <button class="reshuffle" id="reshuffle">reshuffle</button>
+  <div class="field" id="field">
+    {figments.map((text) => (
+      <div class="fig">
+        <span>{text}<a class="c" href={mail(text)}>collaborate</a></span>
+      </div>
+    ))}
+  </div>
+</Page>
+
+<script>
+  const field = document.getElementById("field")!;
+  const figs = [...field.children] as HTMLElement[];
+  const rand = (min: number, max: number) => min + Math.random() * (max - min);
+
+  // two columns of jittered cells, so figments never overlap
+  function scatter() {
+    const rowH = 120;
+    figs.sort(() => Math.random() - 0.5);
+    figs.forEach((el, i) => {
+      el.style.animation = "none";
+      field.append(el);
+      el.style.left = `${(i % 2) * 50 + rand(0, 10)}%`;
+      el.style.top = `${Math.floor(i / 2) * rowH + rand(0, 30)}px`;
+      el.style.setProperty("--i", String(i));
+      el.style.setProperty("--r", `${rand(-2, 2).toFixed(1)}deg`);
+      el.style.setProperty("--dx", `${rand(3, 8).toFixed(1)}px`);
+      el.style.setProperty("--dy", `${rand(3, 8).toFixed(1)}px`);
+      el.style.setProperty("--dur", `${rand(7, 14).toFixed(1)}s`);
+      el.style.setProperty("--delay", `-${rand(0, 7).toFixed(1)}s`);
+    });
+    field.style.setProperty("--h", `${Math.ceil(figs.length / 2) * rowH}px`);
+    field.classList.add("scatter");
+    void field.offsetWidth; // restart the fade-in
+    figs.forEach((el) => (el.style.animation = ""));
+  }
+
+  document.getElementById("reshuffle")!.addEventListener("click", scatter);
+  scatter();
+</script>
