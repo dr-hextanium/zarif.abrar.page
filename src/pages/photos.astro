@@ -1,0 +1,13 @@
+---
+import Page from "../components/Page.astro";
+
+const tiles = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+---
+
+<Page title="photos">
+  <h2>photos</h2>
+  <p class="lede">black and white until hover. location stripped.</p>
+  <div class="grid">
+    {tiles.map((n) => <a href="/photos" class={`ph p${n}`}><span class="t">photo title</span></a>)}
+  </div>
+</Page>
