@@ -1,16 +1,76 @@
 ---
+import Page from "../components/Page.astro";
+import { work } from "../data/work";
+
+const pb = "0:00.00";
+// placeholders until the owner writes the set; the live script picks one per visit
+const lines = [
+  "closing line one, playful, picked at random.",
+  "closing line two, a different joke.",
+  "closing line three, short and odd.",
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Page>
+  <div class="hero">
+    <div class="card">
+      <h1>zarif abrar</h1>
+      <p>biochemistry at stony brook. i build software, small machines, and the tools i wish existed.</p>
+      <p class="looking-line" data-looking-only hidden>currently looking for <span data-looking-phrase></span>.</p>
+    </div>
+    <div class="record" data-live="record" data-state="stopped" aria-hidden="true">
+      <div class="art fallback"></div>
+      <img class="art" data-live="album-art" alt="" hidden />
+    </div>
+    <div class="np" data-live="np" hidden></div>
+  </div>
+
+  <ul class="strip" aria-label="status">
+    <li class="open" data-looking-only hidden>open to <span data-looking-phrase></span></li>
+    <li data-live="discord" hidden><span class="dot"></span><span data-live-text></span></li>
+    <li data-live="offline" hidden><span class="dot"></span>offline</li>
+    <li data-live="github" hidden>
+      <svg viewBox="0 0 16 16"><circle cx="4" cy="4" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="12" cy="8" r="1.6"/><path d="M4 5.6v4.8M5.4 4.6c3 .2 5 1.4 5.2 2"/></svg>
+      <span data-live-text></span>
+    </li>
+    <li data-live="lichess" hidden>
+      <svg viewBox="0 0 16 16"><path d="M5 14h7M6 12h5l-1-5 2-2-3-3-2 2-2 1 1 2-1 1z"/></svg>
+      <span data-live-text></span>
+    </li>
+    <li>
+      <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1.5"/><path d="M6 2v12M10 2v12M2 6h12M2 10h12"/></svg>
+      cube pb {pb}
+    </li>
+  </ul>
+
+  <div class="prose">
+    <div class="latest">
+      <a href="/photos" class="ph p1" aria-label="latest photo, links to photos"><span class="t">photo title</span></a>
+      <p>latest photo, black and white until you look closer. more in <a href="/photos">photos/</a>.</p>
+    </div>
+
+    <div class="working">
+      <h3>what i'm working on</h3>
+      <ul>
+        {work.filter((w) => w.wip).map((w) => <li><a href={w.href}>{w.title}</a> <span>: {w.summary}</span></li>)}
+      </ul>
+    </div>
+
+    <p class="resume">the short version is in my <a href="/resume.pdf" data-resume>resume.pdf</a></p>
+
+    <div class="paths">
+      <h3>elsewhere on the site</h3>
+      <ul>
+        <li><a href="/work">work/</a></li>
+        <li><a href="/margins">margins/</a></li>
+        <li><a href="/figments">figments/</a></li>
+        <li><a href="/photos">photos/</a></li>
+      </ul>
+    </div>
+
+    <p class="closing">
+      <span data-closing data-lines={JSON.stringify(lines)}>{lines[0]}</span>
+      <a class="mail" href="mailto:zarif@abrar.page">zarif@abrar.page</a>
+    </p>
+  </div>
+</Page>
