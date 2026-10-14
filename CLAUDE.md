@@ -22,7 +22,7 @@ Product truth lives in `PRODUCT.md`. When a decision changes, update the relevan
 
 - Install: `bun install`
 - Typecheck: `bun run check` (astro check; needs TypeScript 6, not 7)
-- Test: none yet
+- Test: `bun test`
 - Run locally: `bun run dev`
 - Build: `bun run build` (output in `dist/`)
 
