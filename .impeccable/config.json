@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "src/pages/index.astro"
+        ],
+        "createdAt": "2026-11-01T01:01:14.234Z",
+        "reason": "claude: album-art img is hidden until mount.ts sets an https src from lanyard"
+      }
+    ]
+  }
+}
