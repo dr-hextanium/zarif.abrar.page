@@ -91,9 +91,6 @@ h2 { font-size: var(--s2); }
 /* home prose */
 .prose { margin-top: 34px; display: grid; gap: 30px; }
 .prose p { margin: 0; max-width: 62ch; }
-.latest { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 20px; align-items: end; }
-.latest .ph { aspect-ratio: 4/5; }
-.latest p { color: var(--ink-soft); }
 .working h3, .paths h3 { font-size: var(--s1); margin-bottom: 8px; }
 .working ul, .paths ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .working li span { color: var(--ink-soft); }
@@ -177,7 +174,6 @@ body[data-looking="on"] .resume a { color: var(--red); text-decoration-color: va
   .card h1 { font-size: 2.1rem; }
   .record { width: 76px; top: 22px; right: -6px; z-index: 2; }
   .np { display: none; }
-  .latest { grid-template-columns: 120px minmax(0, 1fr); }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stream article { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
