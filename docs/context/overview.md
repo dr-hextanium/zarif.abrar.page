@@ -53,3 +53,4 @@ Append one line per decision: date, decision, why.
 - 2026-10-12: owner hand-codes the site; agents keep to docs, review, and debugging unless asked.
 - 2026-10-12: TypeScript pinned to 6 because astro check rejects TypeScript 7.
 - 2026-10-31: owner asked agents to implement pages and live widgets from the mockup artifact. Petrona self-hosted via @fontsource/petrona. Lanyard polled over REST every 30s, not websocket. Live code is src/scripts/live/{parse,mount}.ts; accounts in src/data/accounts.ts (empty means hidden). Lichess hides provisional or unplayed ratings. Typst margins and photo pipeline still to come.
+- 2026-10-31: removed the latest photo preview from home; photos live only at /photos.

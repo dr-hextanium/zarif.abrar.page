@@ -21,7 +21,6 @@ Owner's spec as given 2026-10-12. Implementation decisions live in overview.md (
 - spinning record with current spotify album art, stops when offline; on mobile tucks into card corner
 - status strip: icons + lowercase text; discord via lanyard, availability via json,
   top 3 github pushes, lichess rapid + puzzle, cube pb (manual), "offline" when idle
-- latest photo, black and white until hover, links to /photos
 - "what i'm working on": perch, pipit (pitch only)
 - resume pdf link (file replaced in repo)
 - links to each path
