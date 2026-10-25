@@ -26,9 +26,14 @@ export function mount() {
     const online = data !== null && data.status !== "offline";
     const spotify = online ? data.spotify : null;
 
-    show($('li[data-live="discord"]'), online);
+    const discord = $('li[data-live="discord"]');
+    show(discord, online);
     show($('li[data-live="offline"]'), !online);
-    if (online) setText($('li[data-live="discord"]'), `discord: ${data.status === "dnd" ? "busy" : data.status}`);
+    if (online && discord) {
+      discord.dataset.status = data.status;
+      const text = discord.querySelector("[data-live-text]");
+      if (text) text.textContent = `discord: ${data.status === "dnd" ? "do not disturb" : data.status}`;
+    }
 
     const record = $('[data-live="record"]');
     if (record) record.dataset.state = spotify ? "playing" : "stopped";
