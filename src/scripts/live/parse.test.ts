@@ -26,19 +26,24 @@ test("lanyard: non-https art url is dropped, bad payloads are null", () => {
 
 test("lichess: shows only the ratings that exist", () => {
   const perfs = (p: object) => ({ perfs: p });
-  expect(parseLichess(perfs({ rapid: { rating: 1650 }, puzzle: { rating: 2100 } }))).toBe("lichess rapid 1650, puzzle 2100");
-  expect(parseLichess(perfs({ puzzle: { rating: 2100 } }))).toBe("lichess puzzle 2100");
+  expect(parseLichess(perfs({ rapid: { rating: 1650 }, puzzle: { rating: 2100 } }))).toEqual([
+    { perf: "rapid", rating: 1650 },
+    { perf: "puzzle", rating: 2100 },
+  ]);
+  expect(parseLichess(perfs({ puzzle: { rating: 2100 } }))).toEqual([{ perf: "puzzle", rating: 2100 }]);
   expect(parseLichess(perfs({ rapid: { rating: "x" } }))).toBeNull();
   expect(parseLichess({})).toBeNull();
   // unplayed modes come back as a default provisional rating
-  expect(parseLichess(perfs({ rapid: { rating: 2500, games: 0, prov: true }, puzzle: { rating: 2100, games: 40 } }))).toBe("lichess puzzle 2100");
+  expect(parseLichess(perfs({ rapid: { rating: 2500, games: 0, prov: true }, puzzle: { rating: 2100, games: 40 } }))).toEqual([
+    { perf: "puzzle", rating: 2100 },
+  ]);
   expect(parseLichess(perfs({ rapid: { rating: 1500, games: 3, prov: true } }))).toBeNull();
 });
 
 test("github: distinct repos from push events, newest first, top 3", () => {
   const push = (name: string) => ({ type: "PushEvent", repo: { name } });
   const events = [push("z/a"), { type: "WatchEvent", repo: { name: "z/w" } }, push("z/b"), push("z/a"), push("z/c"), push("z/d")];
-  expect(parseGithub(events)).toBe("pushed to a, b, c");
+  expect(parseGithub(events)).toEqual(["z/a", "z/b", "z/c"]);
   expect(parseGithub([{ type: "WatchEvent", repo: { name: "z/w" } }])).toBeNull();
   expect(parseGithub({ message: "rate limited" })).toBeNull();
 });

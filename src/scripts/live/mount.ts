@@ -15,9 +15,12 @@ export function mount() {
   const $ = (sel: string) => document.querySelector<HTMLElement>(sel);
   const $$ = (sel: string) => document.querySelectorAll<HTMLElement>(sel);
   const show = (el: HTMLElement | null, on: boolean) => el && (el.hidden = !on);
-  const setText = (el: HTMLElement | null, text: string) => {
-    const target = el?.querySelector<HTMLElement>("[data-live-text]");
-    if (target) target.textContent = text;
+  const link = (text: string, href: string) => Object.assign(document.createElement("a"), { textContent: text, href });
+  // fills "[prefix] a, b, c" with each item as a link
+  const setLinks = (el: HTMLElement | null, prefix: string, items: [string, string][]) => {
+    const parts: (string | Node)[] = [prefix];
+    items.forEach(([text, href], i) => parts.push(...(i ? [", "] : []), link(text, href)));
+    el?.querySelector("[data-live-text]")?.replaceChildren(...parts);
   };
 
   // discord status and spotify record: re-rendered on every poll, so stale data never lingers
@@ -66,18 +69,18 @@ export function mount() {
   }
 
   // lichess and github: one fetch per page load, hidden unless it works
-  async function once(account: string, key: string, url: string, parse: (json: unknown) => string | null) {
+  async function once<T>(account: string, key: string, url: string, parse: (json: unknown) => T | null, render: (li: HTMLElement | null, data: T) => void) {
     const li = $(`li[data-live="${key}"]`);
-    const text = account ? parse(await fetchJson(url)) : null;
-    if (text) setText(li, text);
-    show(li, text !== null);
+    const data = account ? parse(await fetchJson(url)) : null;
+    if (data) render(li, data);
+    show(li, data !== null);
   }
-  once(accounts.lichess, "lichess", `https://lichess.org/api/user/${accounts.lichess}`, parseLichess);
-  once(
-    accounts.github,
-    "github",
-    `https://api.github.com/users/${accounts.github}/events/public?per_page=30`,
-    parseGithub,
+  const lichess = `https://lichess.org/@/${accounts.lichess}`;
+  once(accounts.lichess, "lichess", `https://lichess.org/api/user/${accounts.lichess}`, parseLichess, (li, ratings) =>
+    setLinks(li, "lichess ", ratings.map((r) => [`${r.perf} ${r.rating}`, r.perf === "rapid" ? `${lichess}/perf/rapid` : lichess])),
+  );
+  once(accounts.github, "github", `https://api.github.com/users/${accounts.github}/events/public?per_page=30`, parseGithub, (li, repos) =>
+    setLinks(li, "pushed to ", repos.map((r) => [r.split("/").pop()!, `https://github.com/${r}`])),
   );
 
   // "looking" switch, then the closing line which depends on it

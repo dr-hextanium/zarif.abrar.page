@@ -28,30 +28,27 @@ export function parseLanyard(json: unknown): { status: Status; spotify: Spotify 
   return { status, spotify };
 }
 
-export function parseLichess(json: unknown): string | null {
+export function parseLichess(json: unknown): { perf: string; rating: number }[] | null {
   const perfs = obj(obj(json)?.perfs);
-  const rating = (key: string) => {
+  const ratings = [];
+  for (const key of ["rapid", "puzzle"]) {
     const perf = obj(perfs?.[key]);
     // lichess returns a default provisional rating for modes never played
-    if (perf?.games === 0 || perf?.prov === true) return null;
-    return typeof perf?.rating === "number" ? perf.rating : null;
-  };
-  const parts = [];
-  const rapid = rating("rapid");
-  const puzzle = rating("puzzle");
-  if (rapid !== null) parts.push(`rapid ${rapid}`);
-  if (puzzle !== null) parts.push(`puzzle ${puzzle}`);
-  return parts.length ? `lichess ${parts.join(", ")}` : null;
+    if (perf?.games === 0 || perf?.prov === true || typeof perf?.rating !== "number") continue;
+    ratings.push({ perf: key, rating: perf.rating });
+  }
+  return ratings.length ? ratings : null;
 }
 
-export function parseGithub(json: unknown): string | null {
+// full "owner/repo" names, newest first, top 3. the public events feed only lists public repos.
+export function parseGithub(json: unknown): string[] | null {
   if (!Array.isArray(json)) return null;
   const repos = new Set<string>(); // events come newest first
   for (const e of json) {
     const name = str(obj(obj(e)?.repo)?.name);
-    if (obj(e)?.type === "PushEvent" && name) repos.add(name.split("/").pop()!);
+    if (obj(e)?.type === "PushEvent" && name) repos.add(name);
   }
-  return repos.size ? `pushed to ${[...repos].slice(0, 3).join(", ")}` : null;
+  return repos.size ? [...repos].slice(0, 3) : null;
 }
 
 export function parseLooking(json: unknown): { looking: boolean; phrase: string } | null {

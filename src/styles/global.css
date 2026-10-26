@@ -88,6 +88,8 @@ h2 { font-size: var(--s2); }
 .strip li[data-live="offline"] .dot { background: var(--ink-soft); }
 .strip li[data-status="idle"] .dot { background: #d4a72c; }
 .strip li[data-status="dnd"] .dot { background: #c4302b; }
+.strip a { color: inherit; }
+.strip a:hover, .strip a:focus-visible { color: var(--red); }
 .strip .open { color: var(--red); font-weight: 500; }
 
 /* home prose */
