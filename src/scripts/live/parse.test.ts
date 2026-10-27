@@ -2,14 +2,14 @@
 import { expect, test } from "bun:test";
 import { parseGithub, parseLanyard, parseLichess, parseLooking, pickClosing } from "./parse";
 
-const spotify = { song: "s", artist: "a", album: "b", album_art_url: "https://i.scdn.co/x.jpg" };
+const spotify = { song: "s", artist: "a", album: "b", album_art_url: "https://i.scdn.co/x.jpg", track_id: "t1" };
 const lanyard = (data: object) => ({ success: true, data });
 
 test("lanyard: playing needs the flag and the spotify object", () => {
   const on = parseLanyard(lanyard({ discord_status: "idle", listening_to_spotify: true, spotify }));
   expect(on).toEqual({
     status: "idle",
-    spotify: { song: "s", artist: "a", album: "b", artUrl: "https://i.scdn.co/x.jpg" },
+    spotify: { song: "s", artist: "a", album: "b", artUrl: "https://i.scdn.co/x.jpg", trackId: "t1" },
   });
   expect(parseLanyard(lanyard({ discord_status: "online", listening_to_spotify: false, spotify }))?.spotify).toBeNull();
   expect(parseLanyard(lanyard({ discord_status: "online", listening_to_spotify: true, spotify: null }))?.spotify).toBeNull();

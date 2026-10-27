@@ -5,7 +5,7 @@ const obj = (v: unknown): Obj | null => (v && typeof v === "object" ? (v as Obj)
 const str = (v: unknown) => (typeof v === "string" ? v : null);
 
 export type Status = "online" | "idle" | "dnd" | "offline";
-export type Spotify = { song: string; artist: string; album: string; artUrl: string | null };
+export type Spotify = { song: string; artist: string; album: string; artUrl: string | null; trackId: string | null };
 
 export function parseLanyard(json: unknown): { status: Status; spotify: Spotify | null } | null {
   const root = obj(json);
@@ -22,7 +22,7 @@ export function parseLanyard(json: unknown): { status: Status; spotify: Spotify 
     const album = str(s.album);
     const art = str(s.album_art_url);
     if (song && artist && album) {
-      spotify = { song, artist, album, artUrl: art?.startsWith("https://") ? art : null };
+      spotify = { song, artist, album, artUrl: art?.startsWith("https://") ? art : null, trackId: str(s.track_id) };
     }
   }
   return { status, spotify };

@@ -1,8 +1,10 @@
 ---
 import Page from "../components/Page.astro";
 import { work } from "../data/work";
+import { accounts } from "../data/accounts";
 
 const pb = "15.73";
+const discord = `https://discord.com/users/${accounts.discordId}`;
 // placeholders until the owner writes the set; the live script picks one per visit
 const lines = [
   "closing line one, playful, picked at random.",
@@ -27,8 +29,8 @@ const lines = [
 
   <ul class="strip" aria-label="status">
     <li class="open" data-looking-only hidden>open to <span data-looking-phrase></span></li>
-    <li data-live="discord" hidden><span class="dot"></span><span data-live-text></span></li>
-    <li data-live="offline" hidden><span class="dot"></span>offline</li>
+    <li data-live="discord" hidden><span class="dot"></span><a href={discord} data-live-text></a></li>
+    <li data-live="offline" hidden><span class="dot"></span><a href={discord}>offline</a></li>
     <li data-live="github" hidden>
       <svg viewBox="0 0 16 16"><circle cx="4" cy="4" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="12" cy="8" r="1.6"/><path d="M4 5.6v4.8M5.4 4.6c3 .2 5 1.4 5.2 2"/></svg>
       <span data-live-text></span>

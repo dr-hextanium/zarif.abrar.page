@@ -41,7 +41,10 @@ export function mount() {
     const record = $('[data-live="record"]');
     if (record) record.dataset.state = spotify ? "playing" : "stopped";
     const np = $('[data-live="np"]');
-    if (np) np.textContent = spotify ? `${spotify.album}, ${spotify.artist}` : "";
+    if (np) {
+      const text = spotify ? `${spotify.album}, ${spotify.artist}` : "";
+      np.replaceChildren(spotify?.trackId ? link(text, `https://open.spotify.com/track/${spotify.trackId}`) : text);
+    }
     show(np, spotify !== null);
 
     if (art && spotify?.artUrl) {
