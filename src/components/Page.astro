@@ -6,6 +6,7 @@ import "@fontsource/petrona/700.css";
 import "@fontsource/petrona/400-italic.css";
 import "@fontsource/petrona/500-italic.css";
 import "../styles/global.css";
+import { accounts } from "../data/accounts";
 
 interface Props {
   title?: string;
@@ -14,6 +15,7 @@ interface Props {
 const { title } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, "");
 const links = ["work", "margins", "figments", "photos"];
+const discord = `https://discord.com/users/${accounts.discordId}`;
 ---
 <html lang="en">
 	<head>
@@ -32,8 +34,10 @@ const links = ["work", "margins", "figments", "photos"];
 			<main><slot /></main>
 			<footer>
 				<a href="mailto:zarif@abrar.page">zarif@abrar.page</a>
-				<span>no cookies</span>
+				<span data-live="discord" hidden><span class="dot"></span><a href={discord} data-live-text></a></span>
+				<span data-live="offline" hidden><span class="dot"></span><a href={discord}>offline</a></span>
 			</footer>
 		</div>
+		<script>import "../scripts/live/mount.ts";</script>
 	</body>
 </html>

@@ -29,9 +29,9 @@ export function mount() {
     const online = data !== null && data.status !== "offline";
     const spotify = online ? data.spotify : null;
 
-    const discord = $('li[data-live="discord"]');
+    const discord = $('[data-live="discord"]');
     show(discord, online);
-    show($('li[data-live="offline"]'), !online);
+    show($('[data-live="offline"]'), !online);
     if (online && discord) {
       discord.dataset.status = data.status;
       const text = discord.querySelector("[data-live-text]");
@@ -74,6 +74,7 @@ export function mount() {
   // lichess and github: one fetch per page load, hidden unless it works
   async function once<T>(account: string, key: string, url: string, parse: (json: unknown) => T | null, render: (li: HTMLElement | null, data: T) => void) {
     const li = $(`li[data-live="${key}"]`);
+    if (!li) return; // only the home page has these
     const data = account ? parse(await fetchJson(url)) : null;
     if (data) render(li, data);
     show(li, data !== null);

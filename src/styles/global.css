@@ -85,11 +85,12 @@ h2 { font-size: var(--s2); }
 .strip li { display: inline-flex; align-items: center; gap: 6px; }
 .strip svg { width: 14px; height: 14px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: #3f8f5a; flex: none; }
-.strip li[data-live="offline"] .dot { background: var(--ink-soft); }
-.strip li[data-status="idle"] .dot { background: #d4a72c; }
-.strip li[data-status="dnd"] .dot { background: #c4302b; }
-.strip a, .np a { color: inherit; }
-.strip a:hover, .strip a:focus-visible, .np a:hover, .np a:focus-visible { color: var(--red); }
+[data-live="offline"] .dot { background: var(--ink-soft); }
+[data-status="idle"] .dot { background: #d4a72c; }
+[data-status="dnd"] .dot { background: #c4302b; }
+footer [data-live] { display: inline-flex; align-items: center; gap: 6px; }
+.strip a, .np a, footer a { color: inherit; }
+.strip a:hover, .strip a:focus-visible, .np a:hover, .np a:focus-visible, footer a:hover, footer a:focus-visible { color: var(--red); }
 .strip .open { color: var(--red); font-weight: 500; }
 
 /* home prose */
