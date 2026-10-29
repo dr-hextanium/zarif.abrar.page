@@ -33,11 +33,21 @@ const discord = `https://discord.com/users/${accounts.discordId}`;
 			</nav>
 			<main><slot /></main>
 			<footer>
-				<a href="mailto:zarif@abrar.page">zarif@abrar.page</a>
+				<a data-mail data-show>zarif [at] abrar [dot] page</a>
 				<span data-live="discord" hidden><span class="dot"></span><a href={discord} data-live-text></a></span>
 				<span data-live="offline" hidden><span class="dot"></span><a href={discord}>offline</a></span>
 			</footer>
 		</div>
+		<script>
+			// the address is never in the html, so scrapers reading raw pages miss it.
+			// it is put together here and filled into every a[data-mail], with an optional subject.
+			const address = ["zarif", "abrar.page"].join("@");
+			document.querySelectorAll<HTMLAnchorElement>("a[data-mail]").forEach((a) => {
+				const subject = a.dataset.mail;
+				a.href = `mailto:${address}${subject ? `?subject=${encodeURIComponent(subject)}` : ""}`;
+				if (a.hasAttribute("data-show")) a.textContent = address;
+			});
+		</script>
 		<script>import "../scripts/live/mount.ts";</script>
 	</body>
 </html>

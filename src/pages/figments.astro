@@ -1,8 +1,6 @@
 ---
 import Page from "../components/Page.astro";
 import { figments } from "../data/figments";
-
-const mail = (text: string) => `mailto:zarif@abrar.page?subject=${encodeURIComponent(text)}`;
 ---
 
 <Page title="figments">
@@ -12,7 +10,7 @@ const mail = (text: string) => `mailto:zarif@abrar.page?subject=${encodeURICompo
   <div class="field" id="field">
     {figments.map((text) => (
       <div class="fig">
-        <span>{text}<a class="c" href={mail(text)}>collaborate</a></span>
+        <span>{text}<a class="c" data-mail={text}>collaborate</a></span>
       </div>
     ))}
   </div>

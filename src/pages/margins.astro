@@ -15,7 +15,7 @@ import { margins } from "../data/margins";
           <p>{m.preview}</p>
           <div class="acts">
             <a href="/margins">margins/{m.slug}</a>
-            <a href={`mailto:zarif@abrar.page?subject=${encodeURIComponent(`re: ${m.title}`)}`}>reply by email</a>
+            <a data-mail={`re: ${m.title}`}>reply by email</a>
           </div>
         </div>
       </article>
