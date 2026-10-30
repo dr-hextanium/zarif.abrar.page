@@ -34,8 +34,11 @@ const discord = `https://discord.com/users/${accounts.discordId}`;
 			<main><slot /></main>
 			<footer>
 				<a data-mail data-show>zarif [at] abrar [dot] page</a>
-				<span data-live="discord" hidden><span class="dot"></span><a href={discord} data-live-text></a></span>
-				<span data-live="offline" hidden><span class="dot"></span><a href={discord}>offline</a></span>
+				<a href={`https://github.com/${accounts.github}`}>github</a>
+				<a href="https://www.linkedin.com/in/zarifabrar/">linkedin</a>
+				<a href="/resume.pdf">resume.pdf</a>
+				<span class="status" data-live="discord" hidden><span class="dot"></span><a href={discord} data-live-text></a></span>
+				<span class="status" data-live="offline" hidden><span class="dot"></span><a href={discord}>offline</a></span>
 			</footer>
 		</div>
 		<script>

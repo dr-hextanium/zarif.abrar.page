@@ -88,9 +88,9 @@ h2 { font-size: var(--s2); }
 [data-live="offline"] .dot { background: var(--ink-soft); }
 [data-status="idle"] .dot { background: #d4a72c; }
 [data-status="dnd"] .dot { background: #c4302b; }
-footer [data-live] { display: inline-flex; align-items: center; gap: 6px; }
-.strip a, .np a, footer a { color: inherit; }
-.strip a:hover, .strip a:focus-visible, .np a:hover, .np a:focus-visible, footer a:hover, footer a:focus-visible { color: var(--red); }
+footer .status { display: inline-flex; align-items: center; gap: 6px; }
+.strip a, .np a, .status a { color: inherit; }
+.strip a:hover, .strip a:focus-visible, .np a:hover, .np a:focus-visible, .status a:hover, .status a:focus-visible { color: var(--red); }
 .strip .open { color: var(--red); font-weight: 500; }
 
 /* home prose */
