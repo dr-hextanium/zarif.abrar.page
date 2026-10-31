@@ -34,7 +34,8 @@ nav.site .home { font-weight: 700; color: var(--ink); margin-right: auto; }
 nav.site a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--red); }
 main { animation: fade .35s ease both; }
 @keyframes fade { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-footer { margin-top: 56px; font-size: var(--s-1); color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+footer { margin-top: 56px; font-size: var(--s-1); color: var(--ink-soft); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; }
+footer .status { margin-left: auto; }
 
 h1, h2, h3 { font-weight: 500; text-wrap: balance; line-height: 1.2; margin: 0; }
 h2 { font-size: var(--s2); }

@@ -35,7 +35,7 @@ export function mount() {
     if (online && discord) {
       discord.dataset.status = data.status;
       const text = discord.querySelector("[data-live-text]");
-      if (text) text.textContent = `discord: ${data.status === "dnd" ? "do not disturb" : data.status}`;
+      if (text) text.textContent = data.status === "dnd" ? "do not disturb" : data.status;
     }
 
     const record = $('[data-live="record"]');
