@@ -33,7 +33,7 @@ const discord = `https://discord.com/users/${accounts.discordId}`;
 			</nav>
 			<main><slot /></main>
 			<footer>
-				<a data-mail data-show>zarif [at] abrar [dot] page</a>
+				<a data-mail data-show data-copy>zarif [at] abrar [dot] page</a>
 				<a href={`https://github.com/${accounts.github}`}>github</a>
 				<a href="https://www.linkedin.com/in/zarifabrar/">linkedin</a>
 				<a href="/resume.pdf">resume.pdf</a>
@@ -49,6 +49,23 @@ const discord = `https://discord.com/users/${accounts.discordId}`;
 				const subject = a.dataset.mail;
 				a.href = `mailto:${address}${subject ? `?subject=${encodeURIComponent(subject)}` : ""}`;
 				if (a.hasAttribute("data-show")) a.textContent = address;
+			});
+
+			// click copies the address; if the clipboard is unavailable, the mailto link works as usual
+			document.querySelectorAll<HTMLAnchorElement>("a[data-copy]").forEach((a) => {
+				a.title = "click to copy";
+				a.addEventListener("click", (e) => {
+					if (!navigator.clipboard) return;
+					e.preventDefault();
+					navigator.clipboard.writeText(address).then(
+						() => {
+							a.style.minWidth = `${a.offsetWidth}px`; // keep the footer from shifting
+							a.textContent = "copied";
+							setTimeout(() => (a.textContent = address), 1500);
+						},
+						() => (location.href = a.href),
+					);
+				});
 			});
 		</script>
 		<script>import "../scripts/live/mount.ts";</script>

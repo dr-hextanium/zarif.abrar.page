@@ -35,6 +35,7 @@ nav.site a[aria-current="page"] { color: var(--ink); text-decoration: underline;
 main { animation: fade .35s ease both; }
 @keyframes fade { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 footer { margin-top: 56px; font-size: var(--s-1); color: var(--ink-soft); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; }
+footer [data-copy] { display: inline-block; cursor: copy; }
 footer .status { margin-left: auto; }
 
 h1, h2, h3 { font-weight: 500; text-wrap: balance; line-height: 1.2; margin: 0; }
