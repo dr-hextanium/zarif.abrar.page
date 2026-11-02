@@ -56,3 +56,4 @@ Append one line per decision: date, decision, why.
 - 2026-10-31: removed the latest photo preview from home; photos live only at /photos.
 - 2026-10-31: discord status moved to the footer on every page; "no cookies" removed. Email address assembled client-side from a[data-mail] so it is never in the html.
 - 2026-11-01: agents may write pages (hand-code-only rule retired). Added work/holdup, a product page for the Holdup Mac app sold through Lemon Squeezy.
+- 2026-11-01: added /apps (nav after work) listing the Mac apps; Holdup moved from /work/holdup to /apps/holdup.

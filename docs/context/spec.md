@@ -11,6 +11,7 @@ Owner's spec as given 2026-10-12. Implementation decisions live in overview.md (
 ## paths
 - /            home
 - /work        projects and roles, by impact, filters: software, hardware, robotics, research
+- /apps        small mac apps, one page per released app
 - /margins     dated stream, one typst file per margin, slug by hand or auto from first words
 - /figments    one-liners in a single file, scattered freeform, reshuffled per visit
 - /photos      single grid
