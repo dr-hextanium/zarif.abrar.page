@@ -1,0 +1,18 @@
+---
+import Page from "../components/Page.astro";
+import { apps } from "../data/apps";
+---
+
+<Page title="apps" description="small mac apps. one price, no subscription.">
+  <h2>apps</h2>
+  <p class="lede">small mac apps. one price, no subscription.</p>
+  <div class="apps">
+    {apps.map((a) => (
+      <div class="entry">
+        <h3>{a.page ? <a href={`/apps/${a.slug}`}>apps/{a.slug}</a> : a.name}</h3>
+        <span class="meta">{a.status}</span>
+        <p>{a.blurb}.</p>
+      </div>
+    ))}
+  </div>
+</Page>
