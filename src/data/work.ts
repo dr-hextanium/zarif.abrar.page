@@ -1,6 +1,3 @@
-// leave empty until the Lemon Squeezy checkout exists; the holdup page then shows "coming soon"
-export const holdupCheckoutURL = "";
-
 // placeholder entries, ordered by impact. tags: software, hardware, robotics, research
 export const work = [
   { title: "work/cookbook", href: "/work", meta: "project", summary: "the cookbook. summary goes here; numbers appear once they are verified.", tags: ["software", "research"] },
