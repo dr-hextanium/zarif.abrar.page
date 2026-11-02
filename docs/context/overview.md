@@ -33,7 +33,7 @@ Not settled. Do not build on these without confirming.
   - `public/`: CNAME, looking.json, resume.pdf, fonts if self-hosted
 - Typst integration: an Astro integration or prebuild script that runs `typst compile --features html --format html` per margin and feeds the HTML body into pages and the feed.
 - Link preview cards: generated at build, possibly `typst compile --format png` from a card template, so it stays one toolchain.
-- Petrona: self-host the font files in `public/fonts` rather than Google Fonts, so the site and the typst output use the same file and make no third-party font requests.
+- Petrona: self-hosted via @fontsource/petrona, not Google Fonts, so the site makes no third-party font requests; typst output should use the same file.
 - Image pipeline: `astro:assets` for webp/avif plus an EXIF reader (for example `exifr`) at build.
 
 ## Owner tasks (outside the repo)
