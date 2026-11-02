@@ -1,6 +1,7 @@
 ---
 import Page from "../components/Page.astro";
 import { work } from "../data/work";
+import { apps } from "../data/apps";
 
 const pb = "15.73";
 // placeholders until the owner writes the set; the live script picks one per visit
@@ -46,6 +47,7 @@ const lines = [
       <h3>what i'm working on</h3>
       <ul>
         {work.filter((w) => w.wip).map((w) => <li><a href={w.href}>{w.title}</a> <span>: {w.summary}</span></li>)}
+        {apps.filter((a) => a.page).map((a) => <li><a href={`/apps/${a.slug}`}>apps/{a.slug}</a> <span>: {a.blurb}.</span></li>)}
       </ul>
     </div>
 
