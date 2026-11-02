@@ -10,9 +10,11 @@ import { accounts } from "../data/accounts";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+const fullTitle = title ? `${title}, zarif abrar` : "zarif abrar";
 const path = Astro.url.pathname.replace(/\/$/, "");
 const links = ["work", "margins", "figments", "photos"];
 const discord = `https://discord.com/users/${accounts.discordId}`;
@@ -23,7 +25,11 @@ const discord = `https://discord.com/users/${accounts.discordId}`;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title ? `${title}, zarif abrar` : "zarif abrar"}</title>
+		<title>{fullTitle}</title>
+		{description && <meta name="description" content={description} />}
+		<meta property="og:title" content={fullTitle} />
+		{description && <meta property="og:description" content={description} />}
+		<meta property="og:type" content="website" />
 	</head>
 	<body>
 		<div class="wrap">
