@@ -145,6 +145,17 @@ body[data-looking="on"] .resume a { color: var(--red); text-decoration-color: va
 .entry .tags { grid-column: 1 / -1; font-size: var(--s-1); color: var(--ink-soft); }
 .wip { color: var(--red); font-style: italic; }
 
+/* product page (work/holdup) */
+.buy { margin: 22px 0 0; font-size: var(--s1); }
+.buy span { color: var(--red); font-style: italic; }
+.product { margin-top: 26px; }
+.product section { padding: 18px 0; border-top: 1px solid var(--rule); }
+.product section:last-child { border-bottom: 1px solid var(--rule); }
+.product h3 { font-size: var(--s1); margin-bottom: 6px; }
+.product p, .product ul { margin: 0 0 6px; max-width: 60ch; }
+.product ul { padding-left: 1.2em; }
+.product li { margin-bottom: 4px; }
+
 /* margins */
 .stream { margin-top: 26px; display: grid; gap: 34px; }
 .stream article { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 16px; }
