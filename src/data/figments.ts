@@ -1,1 +1,1 @@
-export const figments = ["", "", "", "", "", "", "", ""];
+export const figments = Array(8).fill("ashadshdg");
