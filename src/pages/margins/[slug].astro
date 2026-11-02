@@ -1,0 +1,24 @@
+---
+import Page from "../../components/Page.astro";
+import { margins } from "../../data/margins";
+
+export function getStaticPaths() {
+  return margins.map((m) => ({ params: { slug: m.slug }, props: { m } }));
+}
+
+const { m } = Astro.props;
+---
+
+<Page title={m.title} description={m.preview}>
+  <h2>{m.title}</h2>
+  <p class="lede"><time datetime={m.date}>{m.date}</time></p>
+  <div class="stream">
+    <div>
+      <p>{m.preview}</p>
+      <div class="acts">
+        <a href="/margins">all margins</a>
+        <a data-mail={`re: ${m.title}`}>reply by email</a>
+      </div>
+    </div>
+  </div>
+</Page>
