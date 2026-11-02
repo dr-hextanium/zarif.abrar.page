@@ -4,7 +4,7 @@ Zarif Abrar's personal site: work, margins (writing), figments, photos. Static A
 
 ## Working mode
 
-The owner hand-codes this site. Agents do not write pages, components, styles, or build scripts, do not dispatch implementers, and do not scaffold features unless the owner asks for that specific piece. Default help is: answer questions, review code the owner wrote, debug when asked, keep the docs current.
+Agents may write pages and components; the owner reviews before anything ships to `main`.
 
 ## Context files
 
