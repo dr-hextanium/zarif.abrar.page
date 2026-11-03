@@ -33,7 +33,7 @@ nav.site {
 nav.site .home { font-weight: 700; color: var(--ink); margin-right: auto; }
 nav.site a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--red); }
 main { animation: fade .35s ease both; }
-@keyframes fade { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: .4; } }
 footer { margin-top: 56px; font-size: var(--s-1); color: var(--ink-soft); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; }
 footer [data-copy] { display: inline-block; cursor: copy; }
 footer .status { margin-left: auto; }
@@ -108,8 +108,7 @@ body[data-looking="on"] .resume a { color: var(--red); text-decoration-color: va
 .closing [data-closing] { display: block; }
 .js .closing [data-closing]:not([data-ready]) { opacity: 0; }
 .closing [data-ready] { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
-@keyframes rise { from { opacity: 0; transform: translateY(var(--rise, 4px)); } }
-@media (prefers-reduced-motion: reduce) { :root { --rise: 0; } }
+@keyframes rise { from { opacity: 0; } }
 .closing .mail { font-style: normal; font-size: var(--s0); display: block; margin-top: 6px; }
 
 /* photo tiles */
