@@ -8,26 +8,15 @@ const pb = "15.73";
 // last known lichess ratings: shown until the cached or live ones replace them, so the strip never jumps
 const lichess = `https://lichess.org/@/${accounts.lichess}`;
 const ratings = [["rapid", 1689, `${lichess}/perf/rapid`], ["puzzle", 2000, lichess]] as const;
-// placeholders until the owner writes the set; the live script picks one per visit
+// one is picked per visit
 const lines = [
-  "that's most of it. the rest is in my inbox.",
   "if something here made you think of something, tell me.",
-  "i answer email faster than i solve a cube. usually.",
-  "write to me. i read everything, including the long ones.",
-  "say hi. i reply in lowercase too.",
-  "you scrolled this far, so you might as well write.",
+  "write to me. i read the long ones too.",
+  "say hi.",
   "email works. discord is faster.",
   "quick question? discord. long one? email.",
-  "this page was hand-written, the same way my bugs are.",
-  "built by hand, broken by hand, fixed by hand.",
-  "if you find a bug, it's a feature you get to email me about.",
   "your move.",
   "i'm probably losing a rapid game right now.",
-  "that's the page. thanks for walking through it.",
-  "you've reached the bottom. there's no basement.",
-  "end of page. the margins keep going.",
-  "the record keeps spinning after you leave.",
-  "that's all for now. it changes when i do.",
 ];
 ---
 
