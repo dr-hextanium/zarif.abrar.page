@@ -47,10 +47,6 @@ const lines = [
 
   <ul class="strip" aria-label="status">
     <li class="open" data-looking-only hidden>open to <span data-looking-phrase></span></li>
-    <li data-live="github" hidden>
-      <svg viewBox="0 0 16 16"><circle cx="4" cy="4" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="12" cy="8" r="1.6"/><path d="M4 5.6v4.8M5.4 4.6c3 .2 5 1.4 5.2 2"/></svg>
-      <span data-live-text></span>
-    </li>
     <li data-live="lichess">
       <svg viewBox="0 0 16 16"><path d="M5 14h7M6 12h5l-1-5 2-2-3-3-2 2-2 1 1 2-1 1z"/></svg>
       <span data-live-text>lichess {ratings.map(([perf, rating, href], i) => <Fragment>{i ? ", " : ""}<a href={href}>{perf} {rating}</a></Fragment>)}</span>
@@ -65,6 +61,10 @@ const lines = [
     <li>
       <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1.5"/><path d="M6 2v12M10 2v12M2 6h12M2 10h12"/></svg>
       cube pb {pb}
+    </li>
+    <li data-live="github" hidden>
+      <svg viewBox="0 0 16 16"><circle cx="4" cy="4" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="12" cy="8" r="1.6"/><path d="M4 5.6v4.8M5.4 4.6c3 .2 5 1.4 5.2 2"/></svg>
+      <span data-live-text></span>
     </li>
   </ul>
 
