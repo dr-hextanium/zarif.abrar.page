@@ -132,6 +132,7 @@ body[data-looking="on"] .resume a { color: var(--red); text-decoration-color: va
 
 /* work */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 26px; }
+.apps { margin-top: 26px; }
 .chip {
   border: 1px solid var(--rule); background: transparent; border-radius: 999px; padding: 2px 14px; cursor: pointer;
   font-size: var(--s-1); color: var(--ink-soft); transition: all .2s ease;
