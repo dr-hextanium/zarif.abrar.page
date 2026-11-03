@@ -48,9 +48,13 @@ export function mount() {
     show(np, spotify !== null);
 
     if (art && spotify?.artUrl) {
-      art.src = spotify.artUrl;
       art.alt = `album art for ${spotify.album}`;
-      art.hidden = false;
+      // only on a new track; shown once loaded so it eases in whole, not row by row
+      if (art.getAttribute("src") !== spotify.artUrl) {
+        art.hidden = true;
+        art.onload = () => (art.hidden = false);
+        art.src = spotify.artUrl;
+      }
     } else if (art) {
       art.hidden = true;
       art.removeAttribute("src");
@@ -65,8 +69,7 @@ export function mount() {
     polling = false;
   }
   if (accounts.discordId) {
-    renderDiscord(null);
-    pollDiscord();
+    pollDiscord(); // nothing shows until the first answer, so "offline" never flashes first
     setInterval(() => !document.hidden && pollDiscord(), 30_000);
     document.addEventListener("visibilitychange", () => !document.hidden && pollDiscord());
   }

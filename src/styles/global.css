@@ -206,3 +206,6 @@ body[data-looking="on"] .resume a { color: var(--red); text-decoration-color: va
   .card, .ph { transition: none; }
   .scatter .fig { animation: none; }
 }
+
+/* live bits ease in when they appear instead of popping */
+.strip li, .np, .record img.art, footer .status, [data-looking-only] { animation: rise .45s cubic-bezier(.2,.8,.2,1) both; }
