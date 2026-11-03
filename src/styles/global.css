@@ -208,4 +208,4 @@ body[data-looking="on"] .resume a { color: var(--red); text-decoration-color: va
 }
 
 /* live bits ease in when they appear instead of popping */
-.strip li, .np, .record img.art, footer .status, [data-looking-only] { animation: rise .45s cubic-bezier(.2,.8,.2,1) both; }
+.strip [data-live="github"], .np, .record img.art, footer .status, [data-looking-only] { animation: rise .45s cubic-bezier(.2,.8,.2,1) both; }

@@ -74,7 +74,7 @@ export function mount() {
     document.addEventListener("visibilitychange", () => !document.hidden && pollDiscord());
   }
 
-  // lichess and github: one fetch per page load, hidden unless it works
+  // github: one fetch per page load, hidden unless it works
   async function once<T>(account: string, key: string, url: string, parse: (json: unknown) => T | null, render: (li: HTMLElement | null, data: T) => void) {
     const li = $(`li[data-live="${key}"]`);
     if (!li) return; // only the home page has these
@@ -82,10 +82,22 @@ export function mount() {
     if (data) render(li, data);
     show(li, data !== null);
   }
-  const lichess = `https://lichess.org/@/${accounts.lichess}`;
-  once(accounts.lichess, "lichess", `https://lichess.org/api/user/${accounts.lichess}`, parseLichess, (li, ratings) =>
-    setLinks(li, "lichess ", ratings.map((r) => [`${r.perf} ${r.rating}`, r.perf === "rapid" ? `${lichess}/perf/rapid` : lichess])),
-  );
+  // lichess always shows (placeholder or cached ratings); a fetch only touches it when the numbers changed
+  const lichessLi = $('li[data-live="lichess"]');
+  const lichessText = lichessLi?.querySelector("[data-live-text]");
+  if (lichessLi && lichessText && accounts.lichess) {
+    const lichess = `https://lichess.org/@/${accounts.lichess}`;
+    fetchJson(`https://lichess.org/api/user/${accounts.lichess}`).then((json) => {
+      const ratings = parseLichess(json);
+      if (!ratings) return; // keep what is shown
+      const before = lichessText.innerHTML;
+      setLinks(lichessLi, "lichess ", ratings.map((r) => [`${r.perf} ${r.rating}`, r.perf === "rapid" ? `${lichess}/perf/rapid` : lichess]));
+      try {
+        localStorage.setItem("lichess", lichessText.innerHTML);
+      } catch {}
+      if (lichessText.innerHTML !== before) lichessText.animate?.([{ opacity: 0.25 }, { opacity: 1 }], { duration: 400, easing: "ease-out" });
+    });
+  }
   once(accounts.github, "github", `https://api.github.com/users/${accounts.github}/events/public?per_page=30`, parseGithub, (li, repos) =>
     setLinks(li, "pushed to ", repos.map((r) => [r.split("/").pop()!, `https://github.com/${r}`])),
   );

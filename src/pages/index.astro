@@ -2,8 +2,12 @@
 import Page from "../components/Page.astro";
 import { work } from "../data/work";
 import { apps } from "../data/apps";
+import { accounts } from "../data/accounts";
 
 const pb = "15.73";
+// last known lichess ratings: shown until the cached or live ones replace them, so the strip never jumps
+const lichess = `https://lichess.org/@/${accounts.lichess}`;
+const ratings = [["rapid", 1689, `${lichess}/perf/rapid`], ["puzzle", 2000, lichess]] as const;
 // placeholders until the owner writes the set; the live script picks one per visit
 const lines = [
   "that's most of it. the rest is in my inbox.",
@@ -47,9 +51,16 @@ const lines = [
       <svg viewBox="0 0 16 16"><circle cx="4" cy="4" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="12" cy="8" r="1.6"/><path d="M4 5.6v4.8M5.4 4.6c3 .2 5 1.4 5.2 2"/></svg>
       <span data-live-text></span>
     </li>
-    <li data-live="lichess" hidden>
+    <li data-live="lichess">
       <svg viewBox="0 0 16 16"><path d="M5 14h7M6 12h5l-1-5 2-2-3-3-2 2-2 1 1 2-1 1z"/></svg>
-      <span data-live-text></span>
+      <span data-live-text>lichess {ratings.map(([perf, rating, href], i) => <Fragment>{i ? ", " : ""}<a href={href}>{perf} {rating}</a></Fragment>)}</span>
+      <script is:inline>
+        // last fetched ratings from this browser, filled before first paint
+        try {
+          const cached = localStorage.getItem("lichess");
+          if (cached) document.currentScript.previousElementSibling.innerHTML = cached;
+        } catch {}
+      </script>
     </li>
     <li>
       <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1.5"/><path d="M6 2v12M10 2v12M2 6h12M2 10h12"/></svg>
