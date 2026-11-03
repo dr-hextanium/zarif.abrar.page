@@ -48,18 +48,19 @@ const discord = `https://discord.com/users/${accounts.discordId}`;
 				<span class="status" data-live="offline" hidden><span class="dot"></span><a href={discord}>offline</a></span>
 			</footer>
 		</div>
-		<script>
+		<script is:inline>
+			// inline so it runs before first paint: the placeholder address never flashes.
 			// the address is never in the html, so scrapers reading raw pages miss it.
 			// it is put together here and filled into every a[data-mail], with an optional subject.
 			const address = ["zarif", "abrar.page"].join("@");
-			document.querySelectorAll<HTMLAnchorElement>("a[data-mail]").forEach((a) => {
+			document.querySelectorAll("a[data-mail]").forEach((a) => {
 				const subject = a.dataset.mail;
 				a.href = `mailto:${address}${subject ? `?subject=${encodeURIComponent(subject)}` : ""}`;
 				if (a.hasAttribute("data-show")) a.textContent = address;
 			});
 
 			// click copies the address; if the clipboard is unavailable, the mailto link works as usual
-			document.querySelectorAll<HTMLAnchorElement>("a[data-copy]").forEach((a) => {
+			document.querySelectorAll("a[data-copy]").forEach((a) => {
 				a.title = "click to copy";
 				a.addEventListener("click", (e) => {
 					if (!navigator.clipboard) return;
