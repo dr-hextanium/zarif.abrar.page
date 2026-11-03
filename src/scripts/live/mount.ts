@@ -103,6 +103,7 @@ export function mount() {
         if (Array.isArray(parsed)) lines = parsed.filter((l) => typeof l === "string");
       } catch {}
       closing.textContent = pickClosing(lines, looking);
+      closing.dataset.ready = ""; // css eases it in
     }
   })();
 }

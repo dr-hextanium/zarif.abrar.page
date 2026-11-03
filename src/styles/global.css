@@ -105,6 +105,11 @@ footer .status { display: inline-flex; align-items: center; gap: 6px; }
 body[data-looking="on"] .resume a { color: var(--red); text-decoration-color: var(--red); font-weight: 500; }
 .paths ul { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
 .closing { font-style: italic; font-size: var(--s1); border-top: 1px solid var(--rule); padding-top: 22px; }
+.closing [data-closing] { display: block; }
+.js .closing [data-closing]:not([data-ready]) { opacity: 0; }
+.closing [data-ready] { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(var(--rise, 4px)); } }
+@media (prefers-reduced-motion: reduce) { :root { --rise: 0; } }
 .closing .mail { font-style: normal; font-size: var(--s0); display: block; margin-top: 6px; }
 
 /* photo tiles */
