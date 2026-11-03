@@ -5,9 +5,9 @@ import { work } from "../data/work";
 const filters = ["all", "software", "hardware", "robotics", "research"];
 ---
 
-<Page title="work" description="projects and roles by zarif abrar, ordered by impact.">
+<Page title="work" description="projects and jobs by zarif abrar.">
   <h2>work</h2>
-  <p class="lede">ordered by impact. dates on roles only.</p>
+  <p class="lede">things i have made and jobs i have had, biggest first.</p>
   <div class="chips" role="group" aria-label="filter work">
     {filters.map((f) => <button class="chip" aria-pressed={f === "all"} data-filter={f}>{f}</button>)}
   </div>
