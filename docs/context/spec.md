@@ -24,7 +24,6 @@ Owner's spec as given 2026-10-12. Implementation decisions live in overview.md (
   top 3 github pushes, lichess rapid + puzzle, cube pb (manual), "offline" when idle
 - "what i'm working on": perch, pipit (pitch only)
 - resume pdf link (file replaced in repo)
-- links to each path
 - closing line, randomized per visit from playful set
 
 ## looking.json
