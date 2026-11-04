@@ -17,7 +17,6 @@ const { title, description } = Astro.props;
 const fullTitle = title ? `${title}, zarif abrar` : "zarif abrar";
 const path = Astro.url.pathname.replace(/\/$/, "");
 const links = ["work", "apps", "margins", "figments", "photos"];
-const discord = `https://discord.com/users/${accounts.discordId}`;
 ---
 <html lang="en">
 	<head>
@@ -51,10 +50,9 @@ const discord = `https://discord.com/users/${accounts.discordId}`;
 				<a href={`https://github.com/${accounts.github}`}>github</a>
 				<a href="https://www.linkedin.com/in/zarifabrar/">linkedin</a>
 				<a href="https://www.instagram.com/zarif.k.abrar/">instagram</a>
-				<a href={discord}>discord</a>
 				<a href="/resume.pdf">resume.pdf</a>
-				<span class="status" data-live="discord" hidden><span class="dot"></span><a href={discord} data-live-text></a></span>
-				<span class="status" data-live="offline" hidden><span class="dot"></span><a href={discord}>offline</a></span>
+				<span class="status" data-live="discord" hidden><span class="dot"></span><span data-live-text></span></span>
+				<span class="status" data-live="offline" hidden><span class="dot"></span><span>offline</span></span>
 			</footer>
 		</div>
 		<script is:inline>
