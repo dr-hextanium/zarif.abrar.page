@@ -84,5 +84,6 @@ const discord = `https://discord.com/users/${accounts.discordId}`;
 			});
 		</script>
 		<script>import "../scripts/live/mount.ts";</script>
+		{import.meta.env.PROD && <script is:inline>navigator.serviceWorker?.register("/sw.js").catch(() => {});</script>}
 	</body>
 </html>
