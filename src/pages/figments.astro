@@ -43,6 +43,9 @@ import { figments } from "../data/figments";
     figs.forEach((el) => (el.style.animation = ""));
   }
 
-  document.getElementById("reshuffle")!.addEventListener("click", scatter);
+  document.getElementById("reshuffle")!.addEventListener("click", () => {
+    field.classList.add("shuffled"); // a reshuffle fades in even for returning visitors
+    scatter();
+  });
   scatter();
 </script>

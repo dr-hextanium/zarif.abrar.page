@@ -208,3 +208,10 @@ body[data-looking="on"] .resume a { color: var(--red); text-decoration-color: va
 
 /* live bits ease in when they appear instead of popping */
 .strip [data-live="github"], .np, .record img.art, footer .status, [data-looking-only] { animation: rise .45s cubic-bezier(.2,.8,.2,1) both; }
+
+/* returning visitors: no entrance fades, things are just there. figments keep drifting, and fade again on reshuffle */
+.seen main, .seen .closing [data-ready], .seen .strip [data-live="github"], .seen .np, .seen .record img.art,
+.seen footer .status, .seen [data-looking-only] { animation: none; }
+@media (min-width: 561px) and (prefers-reduced-motion: no-preference) {
+  .seen .scatter:not(.shuffled) .fig { animation: drift var(--dur) ease-in-out var(--delay) infinite alternate; }
+}
